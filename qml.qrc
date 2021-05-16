@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>images/lid_close.png</file>
+    </qresource>
+</RCC>
