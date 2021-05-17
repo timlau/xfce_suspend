@@ -2,11 +2,10 @@
 
 import os
 import sys
-import subprocess
 
 from PySide6.QtGui import QGuiApplication
 from PySide6.QtQml import QQmlApplicationEngine
-from PySide6.QtCore import QObject, Signal, Slot
+from PySide6.QtCore import QObject, Slot
 from xfce import XfceLidClose
 
 
@@ -17,9 +16,9 @@ class Backend(QObject):
         self._checked = False
         self._lid_close = XfceLidClose()
 
-
     def set_suspend(self):
         state = self._lid_close.get_suspend()
+        self._checked = state
 
     @Slot(result=bool)
     def isEnabled(self):
@@ -35,7 +34,7 @@ class Backend(QObject):
 if __name__ == "__main__":
 
     # directory where this file is located
-    workdir =  os.path.dirname(os.path.abspath(__file__))    
+    workdir = os.path.dirname(os.path.abspath(__file__))
 
     # Define our backend object, which we pass to QML.
     backend = Backend()
@@ -58,4 +57,3 @@ if __name__ == "__main__":
 
     # run the application
     sys.exit(app.exec())
-

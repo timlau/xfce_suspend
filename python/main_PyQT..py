@@ -2,7 +2,6 @@
 
 import os
 import sys
-import subprocess
 
 from PyQt6.QtGui import QGuiApplication
 from PyQt6.QtQml import QQmlApplicationEngine
@@ -33,6 +32,7 @@ class Backend(QObject):
         print("State changed: ", state)
         self._lid_close.set_suspend(state)
 
+
 if __name__ == "__main__":
 
     # directory where this file is located
@@ -45,7 +45,7 @@ if __name__ == "__main__":
     app = QGuiApplication(sys.argv)
     engine = QQmlApplicationEngine()
     engine.quit.connect(app.quit)
-  
+
     # register backend to QML engine
     engine.rootContext().setContextProperty("backend", backend)
 
@@ -54,7 +54,7 @@ if __name__ == "__main__":
     if not engine.rootObjects():
         sys.exit(-1)
 
-   # set the current lid close action
+    # set the current lid close action
     backend.set_suspend()
 
     # run the application
