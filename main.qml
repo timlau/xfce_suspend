@@ -45,7 +45,7 @@ ApplicationWindow {
             id: image
             width: 200
             height: 200
-            source: "../images/lid_close.png"
+            source: "images/lid_close.png"
             anchors {
                 horizontalCenter: parent.horizontalCenter
                 top: topbar.bottom
@@ -80,11 +80,10 @@ ApplicationWindow {
 
             Switch {
                 id: btnSuspend
-                property bool suspend_state: backend ? backend.enabled : checked
                 anchors.right: parent.right
                 anchors.verticalCenter: text.verticalCenter
                 anchors.rightMargin: 20
-                checked: suspend_state
+                checked: backend ? backend.isEnabled : false
                 onClicked: {
                     backend.setEnabled(checked);
                 }
