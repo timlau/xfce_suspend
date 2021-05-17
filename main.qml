@@ -80,10 +80,13 @@ ApplicationWindow {
 
             Switch {
                 id: btnSuspend
+                
+                property bool suspend: backend ? backend.isEnabled : checked
+                
                 anchors.right: parent.right
                 anchors.verticalCenter: text.verticalCenter
                 anchors.rightMargin: 20
-                checked: backend ? backend.isEnabled : false
+                checked: suspend
                 onClicked: {
                     backend.setEnabled(checked);
                 }
